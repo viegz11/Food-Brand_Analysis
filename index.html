@@ -641,14 +641,16 @@
 
         /* Persona container */
         .persona-container {
-            display: grid;
-            grid-template-columns: repeat(4, minmax(250px, 1fr));
+            display: flex;
+            grid-template-rows: repeat(2, minmax(280px, 1fr));
             gap: 25px;
             margin-top: 30px;
             position: relative;
             z-index: 1;
-            justify-content: center;
-            align-items: stretch;
+
+            /* KEY FIXES */
+            justify-items: center;      /* centers cards horizontally */
+            align-items: stretch;       /* equal card height */
         }
 
         .persona-card {
@@ -660,10 +662,17 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+
+            /* FLEX FIX */
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+
+            /* WIDTH CONTROL */
+            width: 100%;
+            max-width: 360px;
         }
+
 
         .persona-card::before {
             content: '';
@@ -739,6 +748,9 @@
 
         .persona-action.loyalty {
             background: #f3e5f5;
+        }
+        .persona-action.danger {
+            background: #f0c1d0;
         }
 
         /* Icon circle */
@@ -1314,36 +1326,13 @@
                                 style="display:block; margin: 0 auto 15px;">
                             FoodTrends Understanding Customer Preferences in FB
                         </h1>                        
-                        <p class="subtitle">Transforming customer feedback into actionable business intelligence for improved product quality, enhanced customer satisfaction, and data-driven strategic decisions</p>
+                        <p class="subtitle">An end-to-end customer sentiment and food brand performance analysis using surveys, social media reviews, NLP, and Power BI dashboards.</p>
                         
                         <!-- Unsplash Image for Slide 1 -->
                         <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Zm9vZHxlbnwwfHwwfHx8MA%3D%3D" 
                              alt="Gourmet Food Presentation" 
                              class="unsplash-image"loading="lazy">
-                        <!-- Team Members -->
-                        <div style="margin-top: 35px; text-align: center;">
-                            <h3 style="color: var(--secondary); margin-bottom: 15px; display: flex; align-items: center; justify-content: center; gap: 10px;">
-                                <i class="fas fa-users"></i> Team Members
-                            </h3>
-
-                            <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px;">
-                                <div class="food-tag">
-                                    <i class="fas fa-user"></i> MEGHANA BAYAPALI
-                                </div>
-                                <div class="food-tag">
-                                    <i class="fas fa-user"></i> PRAVALIKA RAVALKOL
-                                </div>
-                                <div class="food-tag">
-                                    <i class="fas fa-user"></i> VIGNESH L
-                                </div>
-                                <div class="food-tag">
-                                    <i class="fas fa-user"></i> SHREOSMI KUNDU
-                                </div>
-                                <div class="food-tag">
-                                    <i class="fas fa-user"></i> NIDARSHANA.T.V
-                                </div>
-                            </div>
-                        </div>
+                       
 
                         
                         <div class="logo-container">
@@ -1390,12 +1379,11 @@
                       
                         
                         <ul class="objectives-list">
-                            <li>Integrate structured and unstructured data from multiple sources</li>
-                            <li>Clean and standardize feedback data for consistency</li>
-                            <li>Perform sentiment analysis to categorize feedback as Positive, Neutral, or Negative</li>
-                            <li>Analyze product performance across key attributes</li>
-                            <li>Segment customers into actionable personas based on behavior</li>
-                            <li>Provide strategic recommendations for product improvement and marketing</li>
+                            <li>Analyze customer sentiment & emotions from survey and social media feedback</li>
+                            <li>Identify top food items, brands, and customer preferences</li>
+                            <li>Understand purchase motivation drivers (taste, price, health)</li>
+                            <li>Measure recommendation likelihood based on sentiment & rating</li>
+                            <li>Provide actionable insights for food brands and restaurants</li>
                         </ul>
                         
                         <!-- <div class="module-highlight">
@@ -1461,9 +1449,9 @@
                                     Customer reviews collected from Facebook(Apify Scraper), including:
                                 </p>
                                 <ul style="margin-top: 8px; padding-left: 18px;">
-                                    <li>Customer ID</li>
-                                    <li>Product Name</li>
-                                    <li>Free-text customer feedback</li>
+                                    <li>Product reviews from Facebook (Apify Scraper)</li>
+                                    <li>Review text, polarity score, sentiment label</li>
+                                    <li>Emotion category & sentiment impact</li>
                                 </ul>
                             </div>
                         </div>
@@ -1497,12 +1485,10 @@
                             class="unsplash-image" loading="lazy">
                         
                         <ul class="data-list">
-                            <li>Standardized column names and formats across all survey and review files</li>
-                            <li>Removed duplicate records and invalid entries to ensure data accuracy</li>
-                            <li>Handled missing and null values using logical data rules</li>
-                            <li>Converted all text fields to lowercase for consistency</li>
-                            <li>Cleaned special characters, emojis, and extra spaces from text feedback</li>
-                            <li>Unified Customer ID and Product ID for seamless dataset integration</li>
+                            <li>Merged multiple Excel survey files with inconsistent columns</li>
+                            <li>Standardized city → state → region → country</li>
+                            <li>Removed duplicates & null responses</li>
+                            <li>Cleaned review text (emojis, symbols, casing)</li>
                         </ul>
 
                         <!-- <div class="module-highlight">
@@ -1525,8 +1511,9 @@
                             <i class="fas fa-sitemap"></i> Data Model & Architecture
                         </h2>
                         <p class="slide-subtitle">
-                            ETL-driven star schema architecture with NLP-based sentiment processing
+                            ETL-driven analytics architecture combining survey data, social media reviews, NLP processing, and Power BI visualization
                         </p>
+
                         
                         <!-- Architecture Image -->
                         <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
@@ -1650,11 +1637,12 @@
                         </p>
 
                         <div class="module-highlight">
-                            <p>
-                                Customer feedback text from surveys and social media
-                                was analyzed using NLP techniques. TextBlob polarity scores were calculated for each
-                                feedback entry and mapped to sentiment labels.
-                            </p>
+                            <ul class="data-list">
+                                <li>93.93% of total feedback shows positive sentiment</li>
+                                <li>Average sentiment score observed around 0.69</li>
+                                <li>Emotion analysis enhances understanding beyond ratings</li>
+                            </ul>
+
                         </div>
 
                         <ul class="data-list">
@@ -1706,7 +1694,7 @@
                         </div> -->
                     </div>
                 </div>
-
+                <!-- Slide 7: Sentiment insights Module -->
                 <div class="slide" id="slide7">
                     <div class="slide-content">
                         <div class="food-decoration food-decoration-1">
@@ -1721,31 +1709,12 @@
                         </p>
 
                         <ul class="data-list">
-                            <li>
-                                <strong>Overall Sentiment Health:</strong> 
-                                Analysis of <b>161K+ feedback records</b> shows a strong positive sentiment dominance, with an average sentiment score of <b>77.07%</b>.
-                            </li>
-                            <li>
-                                <strong>Positive Sentiment:</strong> 
-                                Reflects customer satisfaction driven mainly by taste, food quality, and brand experience.
-                            </li>
-                            <li>
-                                <strong>Neutral Sentiment:</strong> 
-                                Represents customers whose expectations are met but not exceeded — a key opportunity segment for conversion.
-                            </li>
-                            <li>
-                                <strong>Negative Sentiment:</strong> 
-                                Highlights concerns around pricing, packaging quality, service delays, and unmet expectations.
-                            </li>
-                            <li>
-                                <strong>Trend & Regional Analysis:</strong> 
-                                Sentiment trends over time and city-wise comparison reveal location-specific strengths and improvement areas.
-                            </li>
-                            <li>
-                                <strong>Business Impact:</strong> 
-                                Enables proactive quality control, targeted regional strategies, and early detection of customer dissatisfaction.
-                            </li>
+                            <li><strong>Positive Sentiment Dominance:</strong> Majority of customers express satisfaction driven by taste and food quality.</li>
+                            <li><strong>Negative Sentiment Drivers:</strong> Pricing concerns, packaging issues, and service delays.</li>
+                            <li><strong>Emotion Impact:</strong> Trust and anticipation correlate with high recommendations.</li>
+                            <li><strong>Business Value:</strong> Early detection of dissatisfaction enables proactive action.</li>
                         </ul>
+
 
 
                         <!-- <div class="module-highlight">
@@ -1765,7 +1734,7 @@
                         </div> -->
                     </div>
                 </div>
-                <!-- Slide 7: Product Insights Module -->
+                <!-- Slide 8: Product Insights Module -->
                 <div class="slide" id="slide8">
                     <div class="slide-content">
                         <div class="food-decoration food-decoration-1">
@@ -1775,9 +1744,11 @@
                         <h2 class="slide-title"><i class="fas fa-search"></i> Product Insights</h2>
                         <p class="slide-subtitle">Analyzing product performance across key attributes</p>
                         <p>
-                            This dashboard evaluates product performance by combining customer ratings, sentiment scores,
-                            and feedback volume to identify both high-performing and underperforming products.
+                            This dashboard evaluates product and brand performance by combining
+                            ratings, sentiment scores, calories, and feedback volume to identify
+                            high-performing and underperforming food items.
                         </p>
+
 
                         
                         <!-- Unsplash Image for Slide 7 -->
@@ -1790,20 +1761,13 @@
                             </h3>
                             <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
                                 <div class="food-tag">
-                                    <i class="fas fa-utensil-spoon"></i> <strong>Taste & Flavor</strong> – strongest driver of positive sentiment
+                                    <i class="fas fa-utensil-spoon"></i> Taste is the strongest driver of customer satisfaction
                                 </div>
                                 <div class="food-tag">
-                                    <i class="fas fa-tag"></i> <strong>Price Value</strong> – key contributor to negative sentiment when misaligned
+                                    <i class="fas fa-star"></i> KFC is the top-performing brand by response volume
                                 </div>
                                 <div class="food-tag">
-                                    <i class="fas fa-star"></i> <strong>Food Quality</strong> – directly linked to high ratings
-                                </div>
-                                <div class="food-tag">
-                                    <i class="fas fa-box-open"></i> <strong>Packaging</strong> – major improvement opportunity
-                                </div>
-                                                               
-                                <div class="food-tag">
-                                    <i class="fas fa-clock"></i> <strong>Most Prefered Food</strong> – impacts repeat purchase behavior
+                                    <i class="fas fa-box-open"></i> Biryani and Chicken-based items dominate preferences
                                 </div>
                             </div>
                         </div>
@@ -1834,7 +1798,7 @@
                     </div>
                 </div>
 
-                <!-- Slide 8: Customer Segmentation Module -->
+                <!-- Slide 9: Customer Segmentation Module -->
                 <div class="slide" id="slide9">
                     <div class="slide-content">
                         <div class="food-decoration food-decoration-1">
@@ -1862,98 +1826,128 @@
                         </div>
                         
                         <div class="persona-container">
-
-                            <!-- Positive Users -->
+                            <!-- Taste-Driven Loyalists -->
                             <div class="persona-card">
                                 <div>
                                     <h3 class="persona-title">
                                         <div class="food-image food-image-1">
-                                            <i class="fas fa-heart"></i>
+                                            <i class="fas fa-utensils"></i>
                                         </div>
-                                        Positive Users
+                                        Taste-Driven Loyalists
                                     </h3>
 
                                     <ul class="persona-desc">
-                                        <li>Consistently positive sentiment and ratings</li>
-                                        <li>Represent the largest customer segment</li>
-                                        <li>Strong candidates for referrals and advocacy</li>
+                                        <li>Highest preference for taste as key driver</li>
+                                        <li>Consistent ratings of 4–5</li>
+                                        <li>Strong “Yes” recommendation behavior</li>
+                                        <li>Emotionally driven by trust & anticipation</li>
                                     </ul>
                                 </div>
 
                                 <div class="persona-action positive">
-                                    <strong>Action:</strong> Referral programs, testimonials
+                                    <strong>Action:</strong> Loyalty programs, taste-focused branding
                                 </div>
                             </div>
 
-                            <!-- Critics -->
+                            <!-- Value-Conscious Pragmatists -->
                             <div class="persona-card">
                                 <div>
                                     <h3 class="persona-title">
                                         <div class="food-image food-image-2">
-                                            <i class="fas fa-search"></i>
+                                            <i class="fas fa-tags"></i>
                                         </div>
-                                        Critics
+                                        Value-Conscious Pragmatists
                                     </h3>
 
                                     <ul class="persona-desc">
-                                        <li>High negative sentiment but valuable feedback</li>
-                                        <li>Identify quality, pricing, and service gaps</li>
+                                        <li>Motivated by taste + price balance</li>
+                                        <li>Moderate ratings (3–4)</li>
+                                        <li>Price-sensitive decision makers</li>
+                                        <li>Mostly purchase via retail & online channels</li>
                                     </ul>
                                 </div>
 
                                 <div class="persona-action warning">
-                                    <strong>Action:</strong> Issue resolution, quality improvement loops
+                                    <strong>Action:</strong> Value combos, pricing transparency
                                 </div>
                             </div>
 
-                            <!-- Silent Users -->
+                            <!-- Emotion-Driven Advocates -->
+                            <div class="persona-card">
+                                <div>
+                                    <h3 class="persona-title">
+                                        <div class="food-image food-image-3">
+                                            <i class="fas fa-heart"></i>
+                                        </div>
+                                        Emotion-Driven Advocates
+                                    </h3>
+
+                                    <ul class="persona-desc">
+                                        <li>Very high positive sentiment (93%+)</li>
+                                        <li>Emotionally influenced by trust & anticipation</li>
+                                        <li>High engagement and review activity</li>
+                                        <li>Strong word-of-mouth impact</li>
+                                    </ul>
+                                </div>
+
+                                <div class="persona-action loyalty">
+                                    <strong>Action:</strong> Referral programs, emotional storytelling
+                                </div>
+                            </div>
+
+                            <!-- Silent Satisfied Customers -->
                             <div class="persona-card">
                                 <div>
                                     <h3 class="persona-title">
                                         <div class="food-image food-image-5">
                                             <i class="fas fa-user-secret"></i>
                                         </div>
-                                        Silent Users
+                                        Silent Satisfied Customers
                                     </h3>
 
                                     <ul class="persona-desc">
-                                        <li>Regular buyers with minimal feedback</li>
-                                        <li>Major conversion opportunity segment</li>
+                                        <li>Good ratings with minimal feedback</li>
+                                        <li>Neutral emotion expression</li>
+                                        <li>Low engagement but repeat buyers</li>
+                                        <li>Hidden advocacy potential</li>
                                     </ul>
                                 </div>
 
                                 <div class="persona-action info">
-                                    <strong>Action:</strong> Feedback nudges, in-app surveys
+                                    <strong>Action:</strong> Feedback nudges, quick surveys
                                 </div>
                             </div>
 
-                            <!-- Loyal Fans -->
+                            <!-- Critical & At-Risk Customers -->
                             <div class="persona-card">
                                 <div>
                                     <h3 class="persona-title">
-                                        <div class="food-image food-image-4">
-                                            <i class="fas fa-thumbs-up"></i>
+                                        <div class="food-image food-image-6">
+                                            <i class="fas fa-exclamation-triangle"></i>
                                         </div>
-                                        Loyal Fans
+                                        Critical & At-Risk Customers
                                     </h3>
 
                                     <ul class="persona-desc">
-                                        <li>High sentiment but low engagement frequency</li>
-                                        <li>Only ~10.86% of total customers</li>
+                                        <li>Negative sentiment & low recommendations</li>
+                                        <li>Emotions include anger, disgust & surprise</li>
+                                        <li>Issues around price, hygiene & packaging</li>
+                                        <li>High reputational impact if ignored</li>
                                     </ul>
                                 </div>
 
-                                <div class="persona-action loyalty">
-                                    <strong>Action:</strong> Loyalty programs, exclusive offers
+                                <div class="persona-action danger">
+                                    <strong>Action:</strong> Rapid issue resolution & quality fixes
                                 </div>
                             </div>
 
                         </div>
 
+
                     </div>
                 </div>
 
-                <!-- Slide 9: Strategy & Innovation Dashboard -->
+                <!-- Slide 10: Strategy & Innovation Dashboard -->
                 <div class="slide" id="slide10">
                     <div class="slide-content">
                         <div class="food-decoration food-decoration-1">
@@ -2021,7 +2015,7 @@
                         </div>
                     </div>
                 </div>
-
+                <!-- Slide 11: Dashboard -->
                 <div class="slide" id="slide11">
                     <div class="slide-content">
                         <div class="food-decoration food-decoration-1">
@@ -2036,25 +2030,16 @@
                         </p>
 
                         <!-- Dashboard Image -->
-                        <img src="https://raw.githubusercontent.com/viegz11/Food-Brand_Analysis/main/Assets/Pravalika.jpeg"
-                            alt="Power BI Dashboard Overview"
-                            width="1396"
-                            height="703"
-                            loading="lazy"
-                            style="max-width:100%;height:auto; border-radius: 15px; margin: 20px 0;">
+
                         <img src="https://raw.githubusercontent.com/viegz11/Food-Brand_Analysis/main/Assets/vignesh.png" 
                             alt="WhatsApp Image 2025-12-18 at 12.25.40 PM" width="1393" height="603" loading="lazy" style="max-width:100%;height:auto; border-radius: 15px; margin: 20px 0;">    
-                        <img src="https://raw.githubusercontent.com/viegz11/Food-Brand_Analysis/main/Assets/Meghana.jpeg" 
-                            alt="WhatsApp Image 2025-12-18 at 12.22.06 PM" width="1400" height="603" loading="lazy" style="max-width:100%;height:auto; border-radius: 15px; margin: 20px 0;">
-                        <img src="https://raw.githubusercontent.com/viegz11/Food-Brand_Analysis/main/Assets/SHREOSMI KUNDU.png" 
-                            alt="Untitled design" width="1920" height="603" loading="lazy" style="max-width:100%;height:auto; border-radius: 15px; margin: 20px 0;">
                         <!-- Dashboard Description -->
                         <ul class="data-list">
-                            <li><strong>Sentiment Overview Dashboard:</strong> Displays overall sentiment distribution, trends over time, and sentiment score summaries</li>
-                            <li><strong>Product Performance Dashboard:</strong> Analyzes product-wise feedback, ratings, and sentiment comparison</li>
-                            <li><strong>Customer Persona Dashboard:</strong> Segments customers based on sentiment behavior and engagement patterns</li>
-                            <li><strong>Strategy & Recommendation Dashboard:</strong> Highlights actionable insights for product improvement and marketing decisions</li>
-                            <li>All dashboards are fully interactive with slicers for city, product, time period, and feedback source</li>
+                            <li>Food Brand & Customer Trends Dashboard</li>
+                            <li>Product & Food Performance Analysis</li>
+                            <li>Customer Behavior & Purchase Drivers</li>
+                            <li>Sentiment & Emotion Analysis Dashboard</li>
+                            <li>Executive Summary & Decision Dashboard</li>
                         </ul>
 
                         <!-- <div class="module-highlight">
@@ -2066,7 +2051,7 @@
                     </div>
                 </div>
 
-                <!-- Slide 10: Results & Business Impact -->
+                <!-- Slide 12: Results & Business Impact -->
                 <div class="slide" id="slide12">
                     <div class="slide-content">
                         <div class="food-decoration food-decoration-1">
@@ -2123,7 +2108,7 @@
                     </div>
                 </div>
 
-                <!-- Slide 11: Tools & Technologies Used -->
+                <!-- Slide 13: Tools & Technologies Used -->
                 <div class="slide" id="slide13">
                     <div class="slide-content">
                         <div class="food-decoration food-decoration-1">
@@ -2224,15 +2209,16 @@
                         <div style="text-align: center; margin-top: 30px; padding: 20px; background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-radius: 15px;">
                             <h3 style="color: var(--primary);"><i class="fas fa-cogs"></i> Technology Flow</h3>
                             <p>
-                                Raw data → Python NLP & cleaning → Power Query ETL → 
-                                Power BI dashboards → Business insights
+                                Survey & social data → Python NLP processing → Power Query ETL →
+                                Power BI dashboards → Actionable business insights
                             </p>
+
                         </div>
                     </div>
                 </div>
 
 
-                <!-- Slide 12: Conclusion & Future Enhancements -->
+                <!-- Slide 14: Conclusion & Future Enhancements -->
                 <div class="slide" id="slide14">
                     <div class="slide-content">
                         <div class="food-decoration food-decoration-1">
@@ -2553,7 +2539,6 @@
 </body>
 
 </html>
-
 
 
 
