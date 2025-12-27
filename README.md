@@ -169,7 +169,7 @@ Each segment is mapped to **clear business actions** such as loyalty programs, p
 </p>
 
 <p align="center">
-  <a href="https://www.linkedin.com/vigneshlc">LinkedIn</a>
+  <a href="https://www.linkedin.com/in/vigneshlc">LinkedIn</a>
 </p>
 
 ---
